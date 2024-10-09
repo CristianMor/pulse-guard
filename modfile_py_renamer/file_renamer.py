@@ -27,16 +27,16 @@ def rename_files(directory):
             else:
                 print(f"[red]No coincide con el patrón:[/red] {filename}")
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Uso: python modfile-renamer.py /ruta/del/directorio")
-        sys.exit(1)
-
-    directory = sys.argv[1]
-    
-    if not os.path.isdir(directory):
-        print(f"Error: '{directory}' no es un directorio válido.")
-        sys.exit(1)
-
-    rename_files(directory)
-    print("Proceso de renombrado completado.")
+# if __name__ == "__main__":
+#     if len(sys.argv) != 2:
+#         print("Uso: python modfile-renamer.py /ruta/del/directorio")
+#         sys.exit(1)
+#
+#     directory = sys.argv[1]
+#
+#     if not os.path.isdir(directory):
+#         print(f"Error: '{directory}' no es un directorio válido.")
+#         sys.exit(1)
+#
+#     rename_files(directory)
+#     print("Proceso de renombrado completado.")
