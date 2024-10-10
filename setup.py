@@ -13,7 +13,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'tool=tool.cli:main',
+            'pulse-guard=tool.cli:main',
         ],
     },
 )
