@@ -1,58 +1,75 @@
-# 🛠️ modfile-py-renamer
+# 🛠️ Pulse Guard 
 
-Bienvenido a modfile-py-renamer! 👋 Esta es una herramienta de línea de comandos (CLI) diseñada para hacer la gestión de archivos mucho más sencilla y rápida. 🎯 Con esta aplicación, puedes renombrar archivos en una carpeta específica eliminando ciertas partes del nombre.
+```plaintext                                                     
+,---.     |                                         |
+|---'.   .|    ,---.,---.   ,---..   .,---.,---.,---|
+|    |   ||    `---.|---'---|   ||   |,---||    |   |
+`    `---'`---'`---'`---'   `---|`---'`---^`    `---'
+                            `---'                    
+```
+Bienvenido a **pulse-guard**! 👋 Esta es una herramienta de línea de comandos (CLI) diseñada para facilitar el monitoreo y la corrección de archivos en el sistema crítico de *Acuicultec.com* que dependen del procesamiento de datos de sonido. 🚀
 
 ## 📄 ¿Qué hace?
 
-Esta primera versión de modfile-py-renamer te ayuda a renombrar archivos en una carpeta, eliminando patrones innecesarios en el nombre de los archivos. Si tienes archivos con nombres como:
+**pulse-guard** se encarga de:
 
-`003_0810232324_Rms_upd.txt`
-
-La aplicación los renombrará a:
-
-`003_08102323_Rms.txt`
+- **Monitorear archivos**: Inspecciona archivos de datos generados por el sistema, identificando datos faltantes o problemas que podrían comprometer la integridad del flujo de información.
+- **Corregir errores**: Proporciona soluciones automáticas para corregir problemas, como renombrar archivos para permitir la decodificación correcta y asegurar que todos los datos estén en el formato esperado.
+- **Simplificar el mantenimiento**: Ofrece una interfaz interactiva que permite a los usuarios verificar y corregir archivos sin necesidad de comandos complejos, haciendo que las tareas de monitoreo sean más simples y rápidas.
 
 ## 🚀 Funcionalidades Principales
 
-- Renombra archivos en una carpeta específica.
-- Elimina los últimos dos dígitos del bloque de números.
-- Elimina sufijos no deseados como "_upd" antes de la extensión del archivo.
-- Usa colores y emojis para una experiencia amigable y agradable. 🎨
+- **Menú interactivo**: 🤖 Un menú fácil de usar que guía al usuario a través de las opciones disponibles para verificar y corregir archivos.
+- **Renombrar archivos RMS**: ✏️ Una función que renombra archivos de sonido RMS para permitir su correcta recodificación.
+- **Verificar datos faltantes**: 🕵️‍♂️ Un comando que analiza los archivos de datos de sonido y detecta cualquier dato faltante, asegurando que no haya brechas en la información procesada.
 
 ## 🧑‍💻 ¿Cómo usarla?
 1. **Clona el repositorio**:
 ```bash
-git clone https://github.com/CristianMor/modfile-py-renamer.git
+git clone https://github.com/CristianMor/pulse-guard.git
 ```
 
 2. **Navega a la carpeta del proyecto**:
 ```bash
-cd modfile-py-renamer
+cd pulse-guard 
 ```
 
 3. **Instala las dependencias**:
 
-Asegúrate de tener instaladas las librerías necesarias (click y rich), puedes hacerlo usando el archivo requirements.txt:
+Asegúrate de tener instaladas las librerías necesarias, puedes hacerlo usando el archivo requirements.txt:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Selecciona una opción**:
-- **Renombrar archivos**: La CLI te pedirá que ingreses la ruta de la carpeta que contiene los archivos a renombrar.
+## 📋 Ejemplo de uso
+
+Para ejecutar un comando básico de verificación de data faltante por procesar, usa:
+
 ```bash
-python -m modfile_py_renamer.cli renombrar
+pulse-guard verify-data
 ```
 
-## ✨ Características
-- Renombra archivos eliminando partes innecesarias de sus nombres de forma rápida.
-- Usa un diseño minimalista con colores y emojis para mejorar la experiencia de usuario. 🎨
-- Fácil de configurar y usar. 😄
+Esto iniciará el proceso de verificación y mostrará los archivos que faltan por procesar.
 
+### Usar el menú interactivo
+
+Para acceder al menú interactivo y explorar las opciones de verificación y correción:
+
+```bash
+pulse-guard interactive
+```
+
+El menú interativo te permitirá seleccionar acciones de manera fácil y directa. 🤖
 
 ## 🛠️ Requisitos
-- Python 3.11.1 🐍
-- Librerías: click y rich (instaladas automáticamente con requirements.txt)
+- Python 3.12.4 🐍
+- Librerías: 
+    - click 
+    - rich 
+    - python-dotenv
+    - inquirer
+    - yaspin
 
 ## 🚧 Próximas Funcionalidades:
 
@@ -60,6 +77,6 @@ python -m modfile_py_renamer.cli renombrar
 
 ## 🎯 Contribuir
 
-Si te interesa mejorar o agregar más funcionalidades a modfile-py-renamer, ¡las contribuciones son bienvenidas! 🤝 Puedes crear un fork del proyecto, hacer tus mejoras y enviar un pull request.
+¡Las contribuciones son bienvenidas! 🎉 Si tienes ideas o mejoras, no dudes en hacer un fork del proyecto, agregar tus cambios y enviar un pull request.
 
-¡Gracias por usar modfile-py-renamer! ✨
+¡Gracias por usar pulse-guard! ✨
