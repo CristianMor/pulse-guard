@@ -25,22 +25,35 @@ Bienvenido a **pulse-guard**! 👋 Esta es una herramienta de línea de comandos
 
 ## 🧑‍💻 ¿Cómo usarla?
 1. **Clona el repositorio**:
-```bash
-git clone https://github.com/CristianMor/pulse-guard.git
-```
+
+    ```bash
+    git clone https://github.com/CristianMor/pulse-guard.git
+    ```
 
 2. **Navega a la carpeta del proyecto**:
-```bash
-cd pulse-guard 
-```
+
+    ```bash
+    cd pulse-guard 
+    ```
 
 3. **Instala las dependencias**:
 
-Asegúrate de tener instaladas las librerías necesarias, puedes hacerlo usando el archivo requirements.txt:
+    Asegúrate de tener instaladas las librerías necesarias, puedes hacerlo usando el archivo requirements.txt:
 
-```bash
-pip install -r requirements.txt
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Configura las variables de entorno**:
+
+    - Renombra el archivo .env-example a .env:
+
+
+    ```bash
+    mv .env-example .env
+    ```
+
+    - Abre el archivo .env y configura las rutas necesarias para las carpetas de entrada y salida.
 
 ## 📋 Ejemplo de uso
 
