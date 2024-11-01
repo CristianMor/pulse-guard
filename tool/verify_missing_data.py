@@ -27,7 +27,7 @@ def verify_missing_data():
 
         # Construir el nombre esperado del archivo .csv
         csv_name = base_name.replace('Rms_upd', 'Data') + '.csv'
-        csv_complete_path = os.path.join(csv_path + base_name[:3] + '/', csv_name)
+        csv_complete_path = os.path.join(csv_path + '/' + base_name[:3] + '/', csv_name)
 
         # Verificar si el archivo .csv existe
         if not os.path.exists(csv_complete_path):
