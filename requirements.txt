@@ -3,3 +3,5 @@ rich
 python-dotenv
 inquirer
 yaspin
+numpy
+soundfile

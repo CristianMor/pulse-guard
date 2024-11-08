@@ -9,6 +9,7 @@ from rich.console import Console
 from dotenv import load_dotenv
 from tool.rename import rename 
 from tool.verify_missing_data import verify_missing_data 
+from tool.rms_build import rms_build
 
 load_dotenv()
 console = Console()
@@ -16,6 +17,7 @@ console = Console()
 MENU_OPTIONS = {
     'Preparar Archivos para Reproceso': None,
     'Verificar data faltante': None,
+    'Generar audio de hoy': None,
     # 'Corregir problemas': ('fix_issues', 'Selecciona el tipo de problema', ['missing_data', 'corrupt_data']),
     'Salir': None
 }
@@ -100,10 +102,20 @@ def interactive():
 
         input("\nPresiona Enter para continuar...")
  
+
+@click.command()
+def rms_to_audio():
+    """✏️  Renombrar archivos RMS para volver a decodificar su información"""
+
+    console.print("[bold cyan]Comenzando a renombrar archivos...[/bold cyan]")
+    rms_build()
+    console.print("[green]Proceso de renombrado completado.[/green]")
+
  # Agregando comandos
 cli.add_command(verify_data)
 cli.add_command(rename_to_recode)
 cli.add_command(interactive)
+cli.add_command(rms_to_audio)
 
 # Entrada
 def main():
