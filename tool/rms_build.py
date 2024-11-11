@@ -4,15 +4,16 @@ import soundfile as sf
 
 from tool.classes.file import File
 
-def rms_to_audio(rms_data, sample_rate=44100, frequency=440):
-    # Normalize data RMS to range [-1, 1]
-    audio_data = 2 * ((rms_data - np.min(rms_data)) / (np.max(rms_data) - np.min(rms_data))) - 1
+def interpolate_audio(rms_data, target_sample_rate=44100, target_duration=300):
+    total_samples = int(target_sample_rate * target_duration)
 
-    # Generate signal audio
-    duration = len(audio_data) / sample_rate
-    t = np.linspace(0, duration, len(audio_data))
-    audio = audio_data * np.sin(2 * np.pi * frequency * t)
-    return audio
+    t_original = np.linspace(0, target_duration, len(rms_data))
+
+    t_interpolated = np.linspace(0, target_duration, total_samples)
+
+    interpolated_rms = np.interp(t_interpolated, t_original, rms_data)
+
+    return interpolated_rms 
 
 def extract_rms_data(file_path):
     with open(file_path, 'r') as file:
@@ -28,7 +29,7 @@ def extract_rms_data(file_path):
         print(f"Error al procesar el archivo {rms_file}: {e}")
         return None
 
-def save_rms_to_wav(file_path, sample_rate=441000, frequency=440):
+def save_rms_to_wav(file_path, frequency=440, target_duration=300):
 
     # make directory 'wav' if not exists
     wav_dir = 'wav'
@@ -41,15 +42,23 @@ def save_rms_to_wav(file_path, sample_rate=441000, frequency=440):
         print(f"No se pudieron extraer los datos válidos del archivo {file_path}")
         return
     
+    sample_rate = 44100
+
     print(f"Datos RMS extraidos: {len(rms_data)} valores")
     print(f"Rango de valores: min={np.min(rms_data):.2f}, max={np.max(rms_data):.2f}")
 
-    audio = rms_to_audio(rms_data)
+    audio_data = interpolate_audio(rms_data, sample_rate, target_duration)
 
-    # ensure duration audio
-    if len(audio) < sample_rate:
-        repetitions = int(np.ceil(sample_rate / len(audio)))
-        audio = np.tile(audio, repetitions)
+    # normalize data RMS to range [-1, 1]
+    audio_data = audio_data / np.max(np.abs(audio_data))
+
+    # apply fade-in and fade-out 
+    fade_duration = int(sample_rate * 0.1) # 0.1 seconds for fade
+    fade_in = np.linspace(0, 1, fade_duration)
+    fade_out = np.linspace(1, 0, fade_duration)
+
+    audio_data[:fade_duration] *= fade_in
+    audio_data[-fade_duration:] *= fade_out
 
     # make name to file output
     base_name = os.path.splitext(os.path.basename(file_path))[0]
@@ -61,9 +70,9 @@ def save_rms_to_wav(file_path, sample_rate=441000, frequency=440):
     wav_file = os.path.join(iddisp_dir, f"{base_name}.wav")
 
     # save file wav
-    sf.write(wav_file, audio, sample_rate)
+    sf.write(wav_file, audio_data, sample_rate)
     print(f"Archivo de audio guardado: {wav_file}")
-    print(f"Duración del audio: {len(audio)/sample_rate:.2f} segundos")
+    print(f"Duración del audio: {len(audio_data)/sample_rate:.2f} segundos")
 
 def rms_build():
 
