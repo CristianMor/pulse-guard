@@ -107,9 +107,9 @@ def interactive():
 def rms_to_audio():
     """✏️  Renombrar archivos RMS para volver a decodificar su información"""
 
-    console.print("[bold cyan]Comenzando a renombrar archivos...[/bold cyan]")
+    console.print("[bold cyan]Comenzando a procesar archivos...[/bold cyan]")
     rms_build()
-    console.print("[green]Proceso de renombrado completado.[/green]")
+    console.print("[green]Proceso de creacion de audio completado.[/green]")
 
  # Agregando comandos
 cli.add_command(verify_data)

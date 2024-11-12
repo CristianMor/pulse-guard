@@ -5,3 +5,4 @@ inquirer
 yaspin
 numpy
 soundfile
+scipy
